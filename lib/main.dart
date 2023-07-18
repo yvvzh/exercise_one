@@ -1,67 +1,100 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-//test
 class MyApp extends StatelessWidget {
-  Widget titleSection = Container(
-    padding: const EdgeInsets.all(8),
-    child: Row(children: [
-      Expanded(
-          child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: const Text(
-              "Pizzas",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-          ),
-          Text(
-            "By Emile",
-            style: TextStyle(color: Colors.grey[500], fontSize: 16),
-          )
-        ],
-      )),
-      const Icon(
-        Icons.favorite,
-        color: Colors.red,
-      ),
-      const Text("55"),
-    ]),
-  );
-
   @override
   Widget build(BuildContext context) {
+    Widget titleSection = Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(children: [
+        Expanded(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: const Text(
+                "Sex on the beach",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            Text(
+              "By Emile",
+              style: TextStyle(color: Colors.grey[500], fontSize: 16),
+            )
+          ],
+        )),
+        const Icon(
+          Icons.favorite,
+          color: Colors.red,
+        ),
+        const Text("55"),
+      ]),
+    );
+
+    Widget buttonSection = Container(
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildButtonColumn(Colors.blue, Icons.message_outlined, "Comment"),
+          _buildButtonColumn(Colors.red, Icons.share, "Share"),
+        ],
+      ),
+    );
+
+    Widget descriptionSection = Container(
+      padding: const EdgeInsets.all(32),
+      child: const Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Vodka\nLiqueur de pêche\nJus de cramberry\nJus d'ananas",
+            softWrap: true,
+          ),
+        ],
+      ),
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Pratique',
+      title: 'Exo - Cocktails',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       home: Scaffold(
           appBar: AppBar(
-            title: const Text("Mes recettes"),
-            backgroundColor: Colors.amber,
+            centerTitle: true,
+            title: const Text("Recettes de cocktails"),
+            backgroundColor: Colors.purple,
           ),
-          body: Column(
+          body: ListView(
             children: [
+              Stack(
+                children: [
+                  Container(
+                      width: 600,
+                      height: 400,
+                      child: const Center(child: CircularProgressIndicator())),
+                  FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image:
+                        'https://www.1001cocktails.com/wp-content/uploads/1001cocktails/2023/03/137001_origin-1536x1024.jpg',
+                    width: 600,
+                    height: 400,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
               titleSection,
-              Container(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    _buildButtonColumn(
-                        Colors.blue, Icons.message_outlined, "Comment"),
-                    _buildButtonColumn(Colors.red, Icons.share, "Share"),
-                  ],
-                ),
-              )
+              buttonSection,
+              descriptionSection
             ],
           )),
     );
