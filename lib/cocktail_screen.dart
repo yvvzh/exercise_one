@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'cocktails.dart';
+import 'favorite_widget.dart';
 
-class RecipeScreen extends StatelessWidget {
+class CocktailScreen extends StatelessWidget {
+  const CocktailScreen({super.key, required this.cocktail});
+
+  final Cocktail cocktail;
+
   @override
   Widget build(BuildContext context) {
     Widget titleSection = Container(
@@ -13,22 +19,22 @@ class RecipeScreen extends StatelessWidget {
           children: [
             Container(
               padding: const EdgeInsets.only(bottom: 8),
-              child: const Text(
-                "Sex on the beach",
+              child: Text(
+                cocktail.name,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
             Text(
-              "By Emile",
+              cocktail.user,
               style: TextStyle(color: Colors.grey[500], fontSize: 16),
             )
           ],
         )),
-        const Icon(
-          Icons.favorite,
-          color: Colors.red,
-        ),
-        const Text("55"),
+        FavoriteWidget(
+          isFavorite: cocktail.isFavorite,
+          favoriteCount: cocktail.favoriteCount,
+          key: null,
+        )
       ]),
     );
 
@@ -45,11 +51,11 @@ class RecipeScreen extends StatelessWidget {
 
     Widget descriptionSection = Container(
       padding: const EdgeInsets.all(32),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Vodka\nLiqueur de pêche\nJus de cramberry\nJus d'ananas",
+            cocktail.desc,
             softWrap: true,
           ),
         ],
@@ -65,8 +71,7 @@ class RecipeScreen extends StatelessWidget {
         body: ListView(
           children: [
             CachedNetworkImage(
-              imageUrl:
-                  "https://www.1001cocktails.com/wp-content/uploads/1001cocktails/2023/03/137001_origin-1536x1024.jpg",
+              imageUrl: cocktail.imageUrl,
               placeholder: (context, url) =>
                   const Center(child: CircularProgressIndicator()),
               errorWidget: (context, url, error) => const Icon(
