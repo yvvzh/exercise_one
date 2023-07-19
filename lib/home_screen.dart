@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 
 import 'cocktails.dart';
 
-class HomeList extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
-    return HomeListState();
+    return HomeScreenState();
   }
 }
 
-class HomeListState extends State<HomeList> {
+class HomeScreenState extends State<HomeScreen> {
   final List<Cocktail> cocktails = [
     Cocktail(
         "Sex on the beach",
@@ -33,7 +35,7 @@ class HomeListState extends State<HomeList> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Liste des cocktails"),
+          title: const Text("Liste des cocktails"),
         ),
         body: ListView.builder(
           itemCount: cocktails.length,
@@ -63,38 +65,47 @@ class CocktailItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.all(8),
-      elevation: 8,
-      child: Row(
-        children: [
-          CachedNetworkImage(
-            imageUrl: cocktail.imageUrl,
-            placeholder: (context, url) =>
-                Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => Icon(Icons.error),
-            width: 100,
-            height: 100,
-            fit: BoxFit.cover,
-          ),
-          Padding(
-            padding: EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: Text(
-                    cocktail.name,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                ),
-                Text(cocktail.user,
-                    style: TextStyle(color: Colors.grey[500], fontSize: 16))
-              ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/cocktail', arguments: cocktail);
+      },
+      child: Card(
+        margin: const EdgeInsets.all(8),
+        elevation: 8,
+        child: Row(
+          children: [
+            Hero(
+              tag: "imageCocktail${cocktail.name}",
+              child: CachedNetworkImage(
+                imageUrl: cocktail.imageUrl,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                width: 100,
+                height: 100,
+                fit: BoxFit.cover,
+              ),
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Text(
+                      cocktail.name,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                  ),
+                  Text(cocktail.user,
+                      style: TextStyle(color: Colors.grey[500], fontSize: 16))
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
