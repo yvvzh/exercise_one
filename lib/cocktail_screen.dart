@@ -1,5 +1,7 @@
+import 'package:exercise_one/favorite_change_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:provider/provider.dart';
 import 'cocktails.dart';
 import 'favorite_widget.dart';
 
@@ -21,7 +23,8 @@ class CocktailScreen extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
                 cocktail.name,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
             ),
             Text(
@@ -30,11 +33,8 @@ class CocktailScreen extends StatelessWidget {
             )
           ],
         )),
-        FavoriteWidget(
-          isFavorite: cocktail.isFavorite,
-          favoriteCount: cocktail.favoriteCount,
-          key: null,
-        )
+        const FavoriteIconWidget(),
+        const FavoriteTextWidget()
       ]),
     );
 
@@ -62,31 +62,35 @@ class CocktailScreen extends StatelessWidget {
       ),
     );
 
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text("Recettes de cocktails"),
-          backgroundColor: Colors.purple,
-        ),
-        body: ListView(
-          children: [
-            CachedNetworkImage(
-              imageUrl: cocktail.imageUrl,
-              placeholder: (context, url) =>
-                  const Center(child: CircularProgressIndicator()),
-              errorWidget: (context, url, error) => const Icon(
-                Icons.error,
-                color: Colors.red,
+    return ChangeNotifierProvider(
+      create: (context) =>
+          FavoriteChangeNotifier(cocktail.isFavorite, cocktail.favoriteCount),
+      child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text("Recettes de cocktails"),
+            backgroundColor: Colors.purple,
+          ),
+          body: ListView(
+            children: [
+              CachedNetworkImage(
+                imageUrl: cocktail.imageUrl,
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(
+                  Icons.error,
+                  color: Colors.red,
+                ),
+                width: 600,
+                height: 400,
+                fit: BoxFit.cover,
               ),
-              width: 600,
-              height: 400,
-              fit: BoxFit.cover,
-            ),
-            titleSection,
-            buttonSection,
-            descriptionSection
-          ],
-        ));
+              titleSection,
+              buttonSection,
+              descriptionSection
+            ],
+          )),
+    );
   }
 
   Column _buildButtonColumn(Color color, IconData icon, String label) {

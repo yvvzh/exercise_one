@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Cocktail {
   String name;
   String user;
