@@ -68,7 +68,7 @@ class CocktailScreen extends StatelessWidget {
       child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text("Recette"),
+            title: Text(cocktail.name),
           ),
           body: ListView(
             children: [

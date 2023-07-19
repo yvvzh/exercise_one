@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'cocktail_screen.dart';
+import 'cocktails.dart';
 import 'home_screen.dart';
 
 void main() {
@@ -31,7 +32,7 @@ class RouteGenerator {
       case '/cocktail':
         return PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                CocktailScreen(cocktail: settings.arguments),
+                CocktailScreen(cocktail: settings.arguments as Cocktail),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) {
               var begin = const Offset(1.0, 0.0);

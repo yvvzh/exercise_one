@@ -28,6 +28,13 @@ class HomeScreenState extends State<HomeScreen> {
         "Rhum\nJus de citron vert\nSirop de framboise\nEau gazeuse\nMenthe\nFramboises\nGlaçons",
         false,
         37),
+    Cocktail(
+        "Test",
+        "test",
+        "https://www.1001cocktails.com/wp-content/uploads/1001cocktails/2023/03/137001_origin-1536x1024.jpg",
+        "Rhum\nJus de citron vert\nSirop de framboise\nEau gazeuse\nMenthe\nFramboises\nGlaçons",
+        false,
+        37),
   ];
 
   @override
