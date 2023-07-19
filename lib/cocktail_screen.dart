@@ -66,25 +66,32 @@ class CocktailScreen extends StatelessWidget {
       create: (context) =>
           FavoriteChangeNotifier(cocktail.isFavorite, cocktail.favoriteCount),
       child: Scaffold(
-          body: ListView(
-        children: [
-          CachedNetworkImage(
-            imageUrl: cocktail.imageUrl,
-            placeholder: (context, url) =>
-                const Center(child: CircularProgressIndicator()),
-            errorWidget: (context, url, error) => const Icon(
-              Icons.error,
-              color: Colors.red,
-            ),
-            width: 600,
-            height: 400,
-            fit: BoxFit.cover,
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text(cocktail.name),
           ),
-          titleSection,
-          buttonSection,
-          descriptionSection
-        ],
-      )),
+          body: ListView(
+            children: [
+              Hero(
+                tag: "imageCocktail${cocktail.name}",
+                child: CachedNetworkImage(
+                  imageUrl: cocktail.imageUrl,
+                  placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                  errorWidget: (context, url, error) => const Icon(
+                    Icons.error,
+                    color: Colors.red,
+                  ),
+                  width: 600,
+                  height: 400,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              titleSection,
+              buttonSection,
+              descriptionSection
+            ],
+          )),
     );
   }
 
