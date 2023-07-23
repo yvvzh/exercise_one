@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>545746318691-7orqdcfqj8067a613gi9f2eafep86s21.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.545746318691-7orqdcfqj8067a613gi9f2eafep86s21</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDeK70pxI0o4x61ifVs4DBJ8ZBoNHfO0EU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>545746318691</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.exerciseOne.RunnerTests</string>
+	<key>PROJECT_ID</key>
+	<string>cocktails-e1ceb</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cocktails-e1ceb.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:545746318691:ios:b62a132d2ef5ddc3b5cf56</string>
+	<key>DATABASE_URL</key>
+	<string>https://cocktails-e1ceb-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

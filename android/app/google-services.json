@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "545746318691",
+    "firebase_url": "https://cocktails-e1ceb-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "cocktails-e1ceb",
+    "storage_bucket": "cocktails-e1ceb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545746318691:android:396db7a20aaa488ab5cf56",
+        "android_client_info": {
+          "package_name": "com.example.exercise_one"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545746318691-m7b0ts5ttrj8br4h3sceuk9b80t4snvu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB8B96aWzGi-6wWZiyjtICdLaq2fGnpJ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545746318691-m7b0ts5ttrj8br4h3sceuk9b80t4snvu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "545746318691-3l9lebbjc17hdpg3413t6v3ja1v7cas7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.exerciseOne"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
